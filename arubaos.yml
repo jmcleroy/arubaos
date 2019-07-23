@@ -1,0 +1,16 @@
+---
+- name: test arubaos
+  hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Configure a server group profile and add an existing radius server to it
+      arubaos_controller_config:
+        host: 192.168.1.1
+        username: admin
+        password: admin123
+        method: POST
+        api_name: server_group_prof
+        config_path: /md/branch1/building1
+        data: {"sg_name":"test", "auth_server": {"name": "test_rad_server"}}
